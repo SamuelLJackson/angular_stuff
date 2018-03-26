@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="remove" viewBox="0 0 612 612">
+    <title>remove</title>
+    <path fill="#ffffff"
+          d="M420.501,218.79
+          c-0.286-6.942-2.868-13.827-8.186-19.125
+          c-5.297-5.298-12.183-7.898-19.125-8.186
+          c-7.726-0.325-15.548,2.276-21.438,8.186
+          L306,265.436l-65.752-65.771
+          c-5.909-5.91-13.712-8.492-21.439-8.186
+          c-6.942,0.287-13.827,2.869-19.125,8.186
+          c-5.297,5.298-7.898,12.183-8.186,19.125
+          c-0.325,7.727,2.276,15.529,8.186,21.439
+          L265.436,306l-65.752,65.752
+          c-5.91,5.909-8.492,13.713-8.186,21.438
+          c0.287,6.942,2.869,13.828,8.186,19.125
+          c5.298,5.298,12.183,7.899,19.125,8.186
+          c7.727,0.325,15.53-2.275,21.439-8.186
+          L306,346.564l65.771,65.771
+          c5.91,5.909,13.713,8.491,21.439,8.186
+          c6.942-0.287,13.827-2.869,19.125-8.186
+          c5.298-5.298,7.898-12.183,8.186-19.125
+          c0.325-7.727-2.276-15.529-8.186-21.439
+          L346.564,306
+          l65.751-65.752
+          C418.226,234.339,420.826,226.536,420.501,218.79z
+          M306,0
+          C137.012,0,0,137.012,0,306
+          s137.012,306,306,306
+          s306-137.012,306-306
+          S474.988,0,306,0z
+          M306,554.625
+          C168.912,554.625,57.375,443.088,57.375,306
+          S168.912,57.375,306,57.375S554.625,168.912,554.625,306S443.088,554.625,306,554.625 z" />
+  </symbol>
+  <symbol id="up-arrow" viewBox="0 0 284.929 284.929"><title>up-arrow</title><path d="M282.082,195.285L149.028,62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665,0.953-6.567,2.856L2.856,195.285 C0.95,197.191,0,199.378,0,201.853c0,2.474,0.953,4.664,2.856,6.566l14.272,14.271c1.903,1.903,4.093,2.854,6.567,2.854 c2.474,0,4.664-0.951,6.567-2.854l112.204-112.202l112.208,112.209c1.902,1.903,4.093,2.848,6.563,2.848 c2.478,0,4.668-0.951,6.57-2.848l14.274-14.277c1.902-1.902,2.847-4.093,2.847-6.566 C284.929,199.378,283.984,197.188,282.082,195.285z" /></symbol>
+  <symbol id="angle-arrow-down" viewBox="0 0 284.929 284.929"><title>angle-arrow-down</title><path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441 L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082 c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647 c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" /></symbol>
+  <symbol id="search" viewBox="0 0 485.213 485.213">
+    <title>search</title>
+    <path d="M471.882,407.567L360.567,296.243c-16.586,25.795-38.536,47.734-64.331,64.321l111.324,111.324 c17.772,17.768,46.587,17.768,64.321,0C489.654,454.149,489.654,425.334,471.882,407.567z" />
+    <path d="M363.909,181.955C363.909,81.473,282.44,0,181.956,0C81.474,0,0.001,81.473,0.001,181.955s81.473,181.951,181.955,181.951 C282.44,363.906,363.909,282.437,363.909,181.955z M181.956,318.416c-75.252,0-136.465-61.208-136.465-136.46 c0-75.252,61.213-136.465,136.465-136.465c75.25,0,136.468,61.213,136.468,136.465 C318.424,257.208,257.206,318.416,181.956,318.416z" />
+    <path d="M75.817,181.955h30.322c0-41.803,34.014-75.814,75.816-75.814V75.816C123.438,75.816,75.817,123.437,75.817,181.955z" />
+  </symbol>
+</svg>
+
+<div class="cuppa-dropdown" (clickOutside)="closeDropdown()">
+    <div class="selected-list">
+      <div class="c-btn" (click)="toggleDropdown($event)" [ngClass]="{'disabled': settings.disabled}">
+        <span *ngIf="selectedItems?.length == 0">{{settings.text}}</span>
+        <span *ngIf="settings.singleSelection">
+          <span *ngFor="let item of selectedItems;trackBy: trackByFn;">
+            {{item.itemName}}
+          </span>
+        </span>
+        <div class="c-list" *ngIf="selectedItems?.length > 0 && !settings.singleSelection">
+          <div class="c-token" *ngFor="let item of selectedItems;trackBy: trackByFn;let k = index" [hidden]="k > settings.badgeShowLimit-1">
+            <span *ngIf="!badgeTempl" class="c-label">{{item.itemName}}</span>
+            <span *ngIf="badgeTempl" class="c-label">
+              <c-templateRenderer [data]="badgeTempl" [item]="item"></c-templateRenderer>
+            </span>
+            <svg class="np-icon" (click)="onItemClick(item,k,$event)"><use xlink:href="#remove" /></svg>
+          </div>
+        </div>
+        <span class="countplaceholder" *ngIf="selectedItems?.length > settings.badgeShowLimit">+{{selectedItems?.length - settings.badgeShowLimit }}</span>
+        <div [hidden]="!isActive"><svg class="np-icon"><use xlink:href="#up-arrow" /></svg></div>
+        <div [hidden]="isActive"><svg class="np-icon"><use xlink:href="#angle-arrow-down" /></svg></div>
+
+      </div>      
+    </div>
+    <div class="dropdown-list" [hidden]="!isActive">
+    <div class="arrow-up arrow-2"></div>
+    <div class="arrow-up"></div>
+    <div class="list-area">
+        <div class="pure-checkbox select-all" *ngIf="settings.enableCheckAll && !settings.singleSelection && !settings.limitSelection" (click)="toggleSelectAll()">
+            <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelectAll" [disabled]="settings.limitSelection == selectedItems?.length"/>
+            <label>
+                <span [hidden]="isSelectAll">{{settings.selectAllText}}</span>
+                <span [hidden]="!isSelectAll">{{settings.unSelectAllText}}</span>
+            </label>
+        </div>   
+        <div class="list-filter" *ngIf="settings.enableSearchFilter && !settings.lazyLoading">
+            
+            <svg class="np-icon"><use xlink:href="#search" /></svg>
+            <input #searchInput type="text" [placeholder]="settings.searchPlaceholderText" [(ngModel)]="filter.itemName">
+        </div> 
+        <div class="list-filter" *ngIf="settings.enableSearchFilter && settings.lazyLoading">
+          
+          <svg class="np-icon"><use xlink:href="#search" /></svg>
+          <input #searchInput type="text" [placeholder]="settings.searchPlaceholderText" (keyup)="filterInfiniteList($event)">
+        </div>
+    <ul *ngIf="!settings.groupBy" [style.maxHeight] = "settings.maxHeight+'px'" class="lazyContainer" >
+        <span *ngIf="itemTempl">
+            <li *ngFor="let item of data | listFilter:filter; let i = index;" (click)="onItemClick(item,i,$event)" class="pure-checkbox">
+            <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)" [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)"/>
+            <label></label>
+            <c-templateRenderer [data]="itemTempl" [item]="item"></c-templateRenderer>
+        </li>
+        </span>
+        <span *ngIf="!itemTempl && !settings.lazyLoading" >
+        <li *ngFor="let item of data | listFilter:filter; let i = index;" (click)="onItemClick(item,i,$event)" class="pure-checkbox">
+            <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)" [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)"/>
+            <label>{{item.itemName}}</label>
+        </li>
+        </span>
+        <span *ngIf="!itemTempl && settings.lazyLoading" >
+            <div [ngStyle]="{'height':totalHeight+'px'}" style="position: relative;">
+
+            
+        <li *ngFor="let item of chunkArray | listFilter:filter; let i = index;" (click)="onItemClick(item,i,$event)" style="position: absolute;width: 100%;" class="pure-checkbox" [styleProp]="chunkIndex[i]">
+            <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)" [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)"/>
+            <label>{{item.itemName}}</label>
+        </li>
+        </div>
+        </span>
+    </ul>
+    <div *ngIf="settings.groupBy" [style.maxHeight] = "settings.maxHeight+'px'" style="overflow: auto;">
+    <ul *ngFor="let obj of groupedData ; let i = index;" class="list-grp">
+        <h4 *ngIf="(obj.value | listFilter:filter ).length > 0">{{obj.key}}</h4>
+        <span *ngIf="itemTempl" >
+        <li *ngFor="let item of obj.value | listFilter:filter; let i = index;" (click)="onItemClick(item,i,$event)" class="pure-checkbox">
+            <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)" [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)"/>
+            <label></label>
+            <c-templateRenderer [data]="itemTempl" [item]="item"></c-templateRenderer>
+        </li>
+        </span>
+        <span *ngIf="!itemTempl" >
+        <li *ngFor="let item of obj.value | listFilter:filter; let i = index;" (click)="onItemClick(item,i,$event)" class="pure-checkbox">
+            <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)" [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)"/>
+            <label>{{item.itemName}}</label>
+        </li>
+        </span>
+    </ul>
+    </div>
+    <h5 class="list-message" *ngIf="data?.length == 0">{{settings.noDataLabel}}</h5>
+    </div>
+    </div>
+</div>

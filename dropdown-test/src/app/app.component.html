@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<span>
+  <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 100 C 40 40, 65 40, 95 110 S 150 180, 180 110" stroke="black" fill="transparent" />
+  </svg>
+</span><svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 70 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent" />
+</svg>
+
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems"
+                        [settings]="dropdownSettings"
+                        (onSelect)="onItemSelect($event)"
+                        (onDeSelect)="onItemDeselect($event)"
+                        (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+</div>
+
+
